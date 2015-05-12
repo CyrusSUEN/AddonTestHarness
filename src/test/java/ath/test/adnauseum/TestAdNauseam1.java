@@ -1,3 +1,5 @@
+package ath.test.adnauseum;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
