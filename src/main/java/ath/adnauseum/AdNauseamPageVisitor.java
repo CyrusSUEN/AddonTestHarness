@@ -15,10 +15,12 @@ import com.google.gson.Gson;
 
 public class AdNauseamPageVisitor {
 
+	private static boolean SILENT = false;
+
 	public static String[] TEST_URLS = {
 		"https://www.google.com.hk/search?q=jewelry",
 		"http://nytimes.com",
-		/*"http://www.ew.com/",
+		"http://www.ew.com/",
 		"http://www.hollywoodreporter.com/",
 		"http://variety.com/",
 		"http://deadline.com/",
@@ -31,7 +33,7 @@ public class AdNauseamPageVisitor {
 		"http://www.poynter.org/",
 		"http://www.thedrum.com/",
 		"http://www.imediaconnection.com/",
-		"http://www.niemanlab.org/"*/
+		"http://www.niemanlab.org/"
 	};
 	
 	public String profileName = "ADN";
@@ -97,22 +99,31 @@ public class AdNauseamPageVisitor {
 		return new FirefoxDriver(ffp);
 	}
 
-	public Result[] go() {
+	public String go() {
+		
+		if (!SILENT) System.out.println("Loading "+TEST_URLS.length+" URLs");
+
 		List<Result> results = new ArrayList<Result>();
+		
 		for (int i = 0; i < TEST_URLS.length; i++) {
 			int count = getCount(TEST_URLS[i]);
 			results.add(new Result(TEST_URLS[i], count));
-			System.out.println("{ count: "+count+", url: "+TEST_URLS[i]+" }");
+			
+			if (!SILENT) System.out.println("count: "+count+", url: "+TEST_URLS[i]);
 		}
-		return results.toArray(new Result[0]);
+		
+		return new Gson().toJson(results);
 	}
 	
 	public static void main(String[] args) {
 		
-		AdNauseamPageVisitor apv = new AdNauseamPageVisitor("ADN");
-		Result[] results = apv.go();
-		String json = new Gson().toJson(results);
-		System.out.println("RESULTS:\n"+json);
+		String profName = null;
+		AdNauseamPageVisitor apv = null;
+		if (args != null && args.length > 0)
+			profName = args[0];
+		apv = new AdNauseamPageVisitor(profName);
+		String jsonResult = apv.go();
+		System.out.println("RESULTS:\n"+jsonResult);
 	}
 
 }
