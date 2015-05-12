@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AdNauseamPageCounts {
 
-	public static String FF_PROFILE = "ADN";
+	public static String FF_PROFILE_NAME = "ADN";
 	public static final int PAGE_WAIT_SEC = 10;
 	public static boolean PAUSE_ON_FAIL = false;
 	
@@ -64,7 +64,7 @@ public class AdNauseamPageCounts {
 
 	private static WebDriver createDriver() {
 		
-		FirefoxProfile ffp = new ProfilesIni().getProfile(FF_PROFILE);
+		FirefoxProfile ffp = new ProfilesIni().getProfile(FF_PROFILE_NAME);
 		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
 		return new FirefoxDriver(ffp);
 	}
