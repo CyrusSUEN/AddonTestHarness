@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="bin" path="src/main/java"/>
-	<classpathentry including="**/*.java" kind="src" output="bin" path="src/test/java"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-java/2.45.0/selenium-java-2.45.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-chrome-driver/2.45.0/selenium-chrome-driver-2.45.0.jar"/>
