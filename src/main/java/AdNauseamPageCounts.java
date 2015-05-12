@@ -1,7 +1,5 @@
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
@@ -11,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AdNauseamPageCounts {
 
 	public static String FF_PROFILE = "ADN";
+	public static final int PAGE_WAIT_SEC = 10;
 	public static boolean PAUSE_ON_FAIL = false;
 	
 	public static String[] TEST_URLS = {
@@ -37,7 +36,7 @@ public class AdNauseamPageCounts {
 		int count = 0;
 		
 		WebDriver driver = createDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, PAGE_WAIT_SEC);
 		driver.get(url);
 
 		try {
