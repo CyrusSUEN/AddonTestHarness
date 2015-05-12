@@ -91,6 +91,8 @@ public class AdNauseamPageVisitor {
 	protected WebDriver createDriver() {
 		
 		FirefoxProfile ffp = new ProfilesIni().getProfile(profileName);
+		if (ffp == null)
+			throw new RuntimeException("Unable to load profile: "+profileName);
 		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
 		return new FirefoxDriver(ffp);
 	}
