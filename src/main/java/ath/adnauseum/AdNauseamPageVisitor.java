@@ -20,6 +20,8 @@ public class AdNauseamPageVisitor {
 	public static String[] TEST_URLS = {
 		"https://www.google.com.hk/search?q=jewelry",
 		"http://nytimes.com",
+		
+		// top 15 media
 		"http://www.ew.com/",
 		"http://www.hollywoodreporter.com/",
 		"http://variety.com/",
@@ -33,7 +35,40 @@ public class AdNauseamPageVisitor {
 		"http://www.poynter.org/",
 		"http://www.thedrum.com/",
 		"http://www.imediaconnection.com/",
-		"http://www.niemanlab.org/"
+		"http://www.niemanlab.org/",
+		
+		// top 15 business
+		"http://www.cnet.com/",
+		"http://www.mashable.com/",
+		"http://www.techcrunch.com/",
+		"http://www.wired.com/",
+		"http://www.zdnet.com/",
+		"http://www.webpronews.com/",
+		"http://www.arstechnica.com/",
+		"http://www.venturebeat.com/",
+		"http://www.thenextweb.com/",
+		"http://www.gigaom.com/",
+		"http://www.informationweek.com/",
+		"http://www.sitepoint.com/",
+		"http://www.readwrite.com/",
+		"http://www.searchengineland.com/",
+		"http://forums.digitalpoint.com/",
+		
+		// top 15 sports
+		"http://www.sports.yahoo.com/",
+		"http://www.espn.com/",
+		"http://www.bleacherreport.com/",
+		"http://www.cbssports.com/",
+		"http://www.si.com/",
+		"http://www.nbcsports.com/",
+		"http://www.sbnation.com/",
+		"http://www.foxsports.com/",
+		"http://www.rantsports.com/",
+		"http://www.deadspin.com/",
+		"http://www.thepostgame.com/",
+		"http://www.sportingnews.com/",
+		"http://www.fansided.com/",
+		"http://www.yardbarker.com/"
 	};
 	
 	public String profileName = "ADN";
