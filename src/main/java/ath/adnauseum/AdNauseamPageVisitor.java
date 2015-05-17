@@ -134,7 +134,6 @@ public class AdNauseamPageVisitor {
 		int count = 0;
 		
 		WebDriver driver = createDriver();
-		driver.manage().window().setSize(new Dimension(100,100));
 		WebDriverWait wait = new WebDriverWait(driver, pageWaitSec);
 		driver.get(url);
 
@@ -189,7 +188,8 @@ public class AdNauseamPageVisitor {
 			throw new RuntimeException("Unable to load profile: "+profileName);
 		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
 		ffp.setPreference("webdriver.load.strategy", "unstable");
-		return new FirefoxDriver(ffp);
+		WebDriver driver = new FirefoxDriver(ffp);
+		return driver;
 	}
 
 	public String go() {
