@@ -18,9 +18,7 @@ public class AdNauseamPageVisitor {
 	private static boolean SILENT = false;
 
 	public static String[] TEST_URLS = {
-		"https://www.google.com.hk/search?q=jewelry",
-		"http://nytimes.com",
-		
+	
 		// top 15 media
 		"http://www.ew.com/",
 		"http://www.hollywoodreporter.com/",
@@ -71,9 +69,9 @@ public class AdNauseamPageVisitor {
 		"http://www.yardbarker.com/"
 	};
 	
-	public String profileName = "ADN";
 	public int pageWaitSec = 10;
-	public boolean pauseOnFail = false;
+	public String profileName = "ADN";
+	public boolean pauseOnFail, pauseOnSuccess;
 
 	public AdNauseamPageVisitor() {
 		
@@ -90,6 +88,7 @@ public class AdNauseamPageVisitor {
 		int count = 0;
 		
 		WebDriver driver = createDriver();
+		driver.manage().window().setSize(new Dimension(100,100));
 		WebDriverWait wait = new WebDriverWait(driver, pageWaitSec);
 		driver.get(url);
 
@@ -103,17 +102,29 @@ public class AdNauseamPageVisitor {
 		} catch (org.openqa.selenium.TimeoutException e) {
 				
 			System.err.println("No count for url: "+url);
+			
 			if (pauseOnFail) {
-				try {
-					Thread.sleep(Integer.MAX_VALUE);
-				} 
-				catch (InterruptedException x) {}
+				System.err.println("Pausing on failure:\n"+e.getMessage());
+				pauseForever();
 			}
 		}			
 
+		if (pauseOnSuccess) {
+			
+			System.err.println("Pausing: count was "+count);
+			pauseForever();
+		}
+		
 		driver.quit();
 		
 		return count;
+	}
+
+	private void pauseForever() {
+		try {
+			Thread.sleep(Integer.MAX_VALUE);
+		} 
+		catch (InterruptedException x) {}
 	}
 
 	class Result {
@@ -131,20 +142,30 @@ public class AdNauseamPageVisitor {
 		if (ffp == null)
 			throw new RuntimeException("Unable to load profile: "+profileName);
 		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
+		ffp.setPreference("webdriver.load.strategy", "unstable");
 		return new FirefoxDriver(ffp);
 	}
 
 	public String go() {
 		
-		if (!SILENT) System.out.println("Loading "+TEST_URLS.length+" URLs");
+		return this.go(TEST_URLS);
+	}
+
+	public String go(String url) {
+		return this.go(new String[]{ url });
+	}
+		
+	public String go(String[] urls) {
+		
+		if (!SILENT) System.out.println("Loading "+urls.length+" URL(s)");
 
 		List<Result> results = new ArrayList<Result>();
 		
-		for (int i = 0; i < TEST_URLS.length; i++) {
-			int count = getCount(TEST_URLS[i]);
-			results.add(new Result(TEST_URLS[i], count));
+		for (int i = 0; i < urls.length; i++) {
+			int count = getCount(urls[i]);
+			results.add(new Result(urls[i], count));
 			
-			if (!SILENT) System.out.println("count: "+count+", url: "+TEST_URLS[i]);
+			if (!SILENT) System.out.println("count: "+count+", url: "+urls[i]);
 		}
 		
 		return new Gson().toJson(results);
@@ -157,7 +178,10 @@ public class AdNauseamPageVisitor {
 		if (args != null && args.length > 0)
 			profName = args[0];
 		apv = new AdNauseamPageVisitor(profName);
+		//apv.pauseOnFail = true;
 		String jsonResult = apv.go();
+				//"https://www.google.com.hk/search?q=jewelry");
+				//"https://duckduckgo.com/?q=jewelry&t=ffsb&ia=about");
 		System.out.println("RESULTS:\n"+jsonResult);
 	}
 
