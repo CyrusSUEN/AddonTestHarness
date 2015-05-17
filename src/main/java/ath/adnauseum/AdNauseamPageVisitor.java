@@ -187,7 +187,7 @@ public class AdNauseamPageVisitor {
 		if (ffp == null)
 			throw new RuntimeException("Unable to load profile: "+profileName);
 		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
-		ffp.setPreference("webdriver.load.strategy", "unstable");
+		// ffp.setPreference("webdriver.load.strategy", "unstable"); // wrong counts
 		WebDriver driver = new FirefoxDriver(ffp);
 		return driver;
 	}
@@ -225,6 +225,7 @@ public class AdNauseamPageVisitor {
 			profName = args[0];
 		apv = new AdNauseamPageVisitor(profName);
 		//apv.pauseOnFail = true;
+		//apv.pauseOnSuccess = true;
 		String jsonResult = apv.go();
 				//"https://www.google.com.hk/search?q=jewelry");
 				//"https://duckduckgo.com/?q=jewelry&t=ffsb&ia=about");
