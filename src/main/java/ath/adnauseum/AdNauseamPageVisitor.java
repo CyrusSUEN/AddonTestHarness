@@ -18,7 +18,7 @@ public class AdNauseamPageVisitor {
 	private static boolean SILENT = false;
 
 	public static String[] TEST_URLS = {
-	
+
 		// top 15 media
 		"http://www.ew.com/",
 		"http://www.hollywoodreporter.com/",
@@ -66,7 +66,53 @@ public class AdNauseamPageVisitor {
 		"http://www.thepostgame.com/",
 		"http://www.sportingnews.com/",
 		"http://www.fansided.com/",
-		"http://www.yardbarker.com/"
+		"http://www.yardbarker.com/",
+		
+		// top 15 blogs
+		"http://www.huffingtonpost.com/",
+		"http://www.tmz.com/",
+		"http://www.businessinsider.com/",
+		"http://mashable.com/",
+		"http://gizmodo.com/",
+		"http://lifehacker.com/",
+		"http://gawker.com/",
+		"http://www.thedailybeast.com/",
+		"http://techcrunch.com/",
+		"http://perezhilton.com/",
+		"http://www.engadget.com/",
+		"http://www.cheezburger.com/",
+		"http://jezebel.com/",
+		"http://deadspin.com/",
+		"http://kotaku.com/",
+		 
+		// top 15 car 
+		"https://www.yahoo.com/autos/",
+		"http://www.autotrader.com/",
+		"http://www.kbb.com/",
+		"http://www.cars.com/",
+		"http://www.edmunds.com/",
+		"http://www.autoblog.com/",
+		"http://www.cargurus.com/",
+		"http://jalopnik.com/",
+		"http://www.carmax.com/",
+		"http://www.motortrend.com/",
+		"http://www.caranddriver.com/",
+		"http://www.carfax.com/",
+		"http://www.thecarconnection.com/",
+		"http://www.carsdirect.com/",
+		"http://www.topspeed.com/",
+		 
+		// top 15 gadget 
+		"https://www.yahoo.com/tech",
+		"http://www.theverge.com/",
+		"http://www.tomshardware.com/",
+		"http://www.digitaltrends.com/",
+		"http://www.techrepublic.com/",
+		"http://www.gizmag.com/",
+		"http://www.anandtech.com/",
+		"http://www.imore.com/",
+		"http://www.gsmarena.com/",
+		"http://www.geek.com/"
 	};
 	
 	public int pageWaitSec = 10;
