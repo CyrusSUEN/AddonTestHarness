@@ -136,6 +136,7 @@ public class AdNauseamPageVisitor {
 		WebDriver driver = createDriver();
 		WebDriverWait wait = new WebDriverWait(driver, pageWaitSec);
 		driver.get(url);
+		driver.switchTo().activeElement();
 
 		try {
 			
@@ -146,12 +147,13 @@ public class AdNauseamPageVisitor {
 			
 		} catch (org.openqa.selenium.TimeoutException e) {
 				
-			System.err.println("No count for url: "+url);
+			System.err.println("No count for url(timeout): "+url);
+			checkForPause(e);
+		
+		} catch (Throwable t) {
 			
-			if (pauseOnFail) {
-				System.err.println("Pausing on failure:\n"+e.getMessage());
-				pauseForever();
-			}
+			System.err.println("No count for url(ERROR): "+url+"\n"+t.getMessage());
+			checkForPause(t);
 		}			
 
 		if (pauseOnSuccess) {
@@ -163,6 +165,14 @@ public class AdNauseamPageVisitor {
 		driver.quit();
 		
 		return count;
+	}
+
+	private void checkForPause(Throwable e) {
+		
+		if (pauseOnFail) {
+			System.err.println("Pausing on failure:\n"+e.getMessage());
+			pauseForever();
+		}
 	}
 
 	private void pauseForever() {
@@ -214,7 +224,17 @@ public class AdNauseamPageVisitor {
 			if (!SILENT) System.out.println("count: "+count+", url: "+urls[i]);
 		}
 		
+		return toJSON(results);
+	}
+
+	public String toJSON(List<Result> results) {
+		
 		return new Gson().toJson(results);
+	}
+	
+	public String toCSV(List<Result> results) {
+		
+		throw new RuntimeException("IMPLEMENT ME");
 	}
 	
 	public static void main(String[] args) {
