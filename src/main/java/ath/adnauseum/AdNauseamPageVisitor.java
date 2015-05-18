@@ -133,15 +133,15 @@ public class AdNauseamPageVisitor {
 		
 		int count = 0;
 		
-		WebDriver driver = createDriver();
-		WebDriverWait wait = new WebDriverWait(driver, pageWaitSec);
-		driver.get(url);
-		driver.switchTo().activeElement();
-
+		WebDriver driver = null;
 		try {
 			
-			WebElement we = wait.until(ExpectedConditions
-					.presenceOfElementLocated(By.id("adnauseam-count")));
+			driver = createDriver();
+			driver.get(url);
+			driver.switchTo().activeElement();
+			
+			WebElement we = new WebDriverWait(driver, pageWaitSec).until
+					(ExpectedConditions.presenceOfElementLocated(By.id("adnauseam-count")));
 			
 			count = Integer.parseInt(we.getAttribute("count"));
 			
@@ -246,7 +246,7 @@ public class AdNauseamPageVisitor {
 		apv = new AdNauseamPageVisitor(profName);
 		//apv.pauseOnFail = true;
 		//apv.pauseOnSuccess = true;
-		String jsonResult = apv.go();
+		String jsonResult = apv.go("http://www.zdnet.com/");
 				//"https://www.google.com.hk/search?q=jewelry");
 				//"https://duckduckgo.com/?q=jewelry&t=ffsb&ia=about");
 		System.out.println("RESULTS:\n"+jsonResult);
