@@ -147,12 +147,12 @@ public class AdNauseamPageVisitor {
 			
 		} catch (org.openqa.selenium.TimeoutException e) {
 				
-			System.err.println("No count for url(timeout): "+url);
+			System.err.println("[WARN] No count (timeout) for url: "+url);
 			checkForPause(e);
 		
 		} catch (Throwable t) {
 			
-			System.err.println("No count for url(ERROR): "+url+"\n"+t.getMessage());
+			System.err.println("[WARN] No count for url: "+url+"\nError: "+t.getMessage());
 			checkForPause(t);
 		}			
 
@@ -246,10 +246,11 @@ public class AdNauseamPageVisitor {
 		apv = new AdNauseamPageVisitor(profName);
 		//apv.pauseOnFail = true;
 		//apv.pauseOnSuccess = true;
-		String jsonResult = apv.go("http://www.zdnet.com/");
+		String jsonResult = apv.go();
+				//"http://www.zdnet.com/");
 				//"https://www.google.com.hk/search?q=jewelry");
 				//"https://duckduckgo.com/?q=jewelry&t=ffsb&ia=about");
-		System.out.println("RESULTS:\n"+jsonResult);
+		System.out.println("\nRESULTS:\n"+jsonResult);
 	}
 
 }
