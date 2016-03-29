@@ -3,6 +3,7 @@ package ath.adnauseum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -220,7 +221,7 @@ public class AdNauseamPageVisitor {
 	};
 	
 	public int pageWaitSec = 10;
-	public String profileName = "ADN";
+	public String profileName = "NewADN";
 	public boolean pauseOnFail, pauseOnSuccess;
 
 	public AdNauseamPageVisitor() {
@@ -236,11 +237,16 @@ public class AdNauseamPageVisitor {
 	public int getCount(String url) {
 		
 		int count = 0;
-		
+		long ts = -1;
 		WebDriver driver = null;
 		try {
 			
 			driver = createDriver();
+			driver.manage().timeouts().pageLoadTimeout(pageWaitSec, TimeUnit.SECONDS);
+			
+			ts = System.currentTimeMillis();
+			System.out.println("Waiting...");
+			
 			driver.get(url);
 			driver.switchTo().activeElement();
 			
@@ -267,7 +273,8 @@ public class AdNauseamPageVisitor {
 		}
 		
 		driver.quit();
-		
+		System.out.println("DONE in "+(System.currentTimeMillis()-ts)/1000+"s");
+
 		return count;
 	}
 
@@ -300,7 +307,7 @@ public class AdNauseamPageVisitor {
 		FirefoxProfile ffp = new ProfilesIni().getProfile(profileName);
 		if (ffp == null)
 			throw new RuntimeException("Unable to load profile: "+profileName);
-		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);
+		ffp.setPreference("extensions.adnauseam@rednoise.org.automated", true);		
 		// ffp.setPreference("webdriver.load.strategy", "unstable"); // wrong counts
 		WebDriver driver = new FirefoxDriver(ffp);
 		return driver;
@@ -343,18 +350,10 @@ public class AdNauseamPageVisitor {
 	
 	public static void main(String[] args) {
 		
-		String profName = null;
-		AdNauseamPageVisitor apv = null;
-		if (args != null && args.length > 0)
-			profName = args[0];
-		apv = new AdNauseamPageVisitor(profName);
-		//apv.pauseOnFail = true;
-		//apv.pauseOnSuccess = true;
-		String jsonResult = apv.go();
-				//"http://www.zdnet.com/");
-				//"https://www.google.com.hk/search?q=jewelry");
-				//"https://duckduckgo.com/?q=jewelry&t=ffsb&ia=about");
+		AdNauseamPageVisitor apv = new AdNauseamPageVisitor("Selenium");
+		String jsonResult = apv.go("http://mashable.com");
 		System.out.println("\nRESULTS:\n"+jsonResult);
+
 	}
 
 }
