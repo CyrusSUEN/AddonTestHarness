@@ -19,6 +19,17 @@ public class AdNauseamPageVisitor {
 	private static boolean SILENT = false;
 
 	public static String[] TEST_URLS = {
+		
+		// text ad
+		"https://www.google.com.hk/search?q=credit+card&ie=utf-8&oe=utf-8&gws_rd=cr&ei=z96oVdPsGoWW0gT5vpHYCQ",
+		"https://search.yahoo.com/yhs/search?p=credit+card&ei=UTF-8&hspart=mozilla&hsimp=yhs-001",
+		"https://www.bing.com/search?q=credit+card&pc=MOZI&form=MOZSBR",
+		"https://duckduckgo.com/?q=credit+card&t=ffsb&ia=about",
+		"http://search.aol.com/aol/search?enabled_terms=&s_it=comsearch&q=credit+card&s_chn=prt_main5",
+		"http://www.ask.com/web?q=credit+card&qsrc=0&o=0&l=dir&qo=homepageSearchBox",
+		"http://www.sogou.com/web?query=prada&ie=utf8&_ast=1437131008&_asf=null&w=01029901&p=40040100&dp=1&cid=&sut=1689&sst0=1437131153563&lkt=5%2C1437131152981%2C1437131153410",
+		"http://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=prada&rsv_pq=810e53350000a913&rsv_t=7d8fwlSsgn%2F2LxwJILvBCmqXgxpYE0UmXLIb4CtNwfFupOE1lNBGMjL2%2FHo&rsv_enter=1&inputT=599&rsv_sug3=18&rsv_sug1=14&rsv_sug2=0&rsv_sug4=3064",
+		"http://www.ebay.com/sch/i.html?_odkw=credit+card&_osacat=0&_from=R40&_trksid=p2045573.m570.l1313.TR0.TRC0.H0.Xsdafasdf.TRS0&_nkw=sdafasdf&_sacat=0",
 
 		// top 15 media
 		"http://www.ew.com/",
