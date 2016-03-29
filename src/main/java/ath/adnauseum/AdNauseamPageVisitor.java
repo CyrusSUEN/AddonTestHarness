@@ -231,7 +231,7 @@ public class AdNauseamPageVisitor {
 		"http://food.com",
 	};
 	
-	public int pageWaitSec = 10;
+	public int pageWaitSec = 20;
 	public String profileName = "NewADN";
 	public boolean pauseOnFail, pauseOnSuccess;
 
@@ -340,6 +340,7 @@ public class AdNauseamPageVisitor {
 		List<Result> results = new ArrayList<Result>();
 		
 		for (int i = 0; i < urls.length; i++) {
+			
 			int count = getCount(urls[i]);
 			results.add(new Result(urls[i], count));
 			
@@ -361,7 +362,7 @@ public class AdNauseamPageVisitor {
 	
 	public static void main(String[] args) {
 		
-		AdNauseamPageVisitor apv = new AdNauseamPageVisitor("Selenium");
+		AdNauseamPageVisitor apv = new AdNauseamPageVisitor("automated");
 		String jsonResult = apv.go("http://mashable.com");
 		System.out.println("\nRESULTS:\n"+jsonResult);
 

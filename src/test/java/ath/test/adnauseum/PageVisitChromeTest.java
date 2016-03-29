@@ -1,8 +1,10 @@
 package ath.test.adnauseum;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.junit.*;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -45,6 +47,10 @@ public class PageVisitChromeTest {
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to load: "+extensionFilePath);
 		}
+		
+		HashMap<String, Object> prefs = new HashMap<String, Object>();
+		prefs.put("extensions.adnauseam@rednoise.org.automated", true);
+		options.setExperimentalOption("prefs", prefs);
 		
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
