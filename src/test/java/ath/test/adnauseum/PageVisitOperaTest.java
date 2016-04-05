@@ -17,7 +17,7 @@ public class PageVisitOperaTest {
 	// Assuming the path of AdNauseam2 repo is next to ADN2AutomatedTest's
 	// Change the following path if needed
 	private static String extensionFilePath = 
-			System.getProperty("user.dir") + "/../AdNauseam2/dist/build/adnauseam.opera.nex";	
+			System.getProperty("user.dir") + "/../AdNauseam2/bin/build/adnauseam.opera.nex";	
 
 	private static OperaDriverService service;
 	private WebDriver driver;
