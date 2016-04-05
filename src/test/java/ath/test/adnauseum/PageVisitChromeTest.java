@@ -19,7 +19,9 @@ public class PageVisitChromeTest {
 	// Assuming the path of AdNauseam2 repo is next to ADN2AutomatedTest's
 	// Change the following path if needed
 	private static String extensionFilePath = 
-			System.getProperty("user.dir") + "/../AdNauseam2/dist/build/adnauseam.chromium.crx";	
+			System.getProperty("user.dir") + "/../AdNauseam2/bin/build/adnauseam.chromium.crx";
+	
+	private static String exportJSONAdsURL = "http://rednoise.org/ad-auto-export";
 
 	private static ChromeDriverService service;
 	private WebDriver driver;
@@ -73,6 +75,8 @@ public class PageVisitChromeTest {
 			
 			// rest of the test...
 		}
+		// finished testing and export collected ads as JSON
+		driver.get(exportJSONAdsURL);
 	}
 
 	@Test
@@ -85,18 +89,7 @@ public class PageVisitChromeTest {
 			
 			// rest of the test...
 		}
+		// finished testing and export collected ads as JSON
+		driver.get(exportJSONAdsURL);
 	}
-
-	@Test
-	public void testGoogleSearch() {
-		driver.get("http://www.google.com");
-		// rest of the test...
-	}
-
-	@Test
-	public void testBingSearch() {
-		driver.get("http://www.bing.com");
-		// rest of the test...
-	}
-
 }
