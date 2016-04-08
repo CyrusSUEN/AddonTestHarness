@@ -2,6 +2,7 @@ package ath.test.adnauseum;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
 
@@ -58,11 +59,39 @@ public class PageVisitChromeTest {
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		
 		driver = new RemoteWebDriver(service.getUrl(), capabilities);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@After
 	public void quitDriver() {
 		driver.quit();
+	}
+
+	@Test
+	public void testAllURLs() {
+		
+		String [][] testURLs = {
+				// Websites.textAds, 
+				Websites.topBlogs,
+				Websites.topBusiness,
+				Websites.topCars,
+				Websites.topDomain,
+				Websites.topGadgets,
+				Websites.topMedia,
+				Websites.topNews,
+				Websites.topRecreation,
+				Websites.topSports
+		};
+		
+		for (int i = 0; i < testURLs.length; i++) {
+			
+			for (int j = 0; j < testURLs[i].length; j++)
+			{
+				driver.get(testURLs[i][j]);
+			}
+		}
+		// finished testing and export collected ads as JSON
+		driver.get(exportJSONAdsURL);
 	}
 
 	@Test

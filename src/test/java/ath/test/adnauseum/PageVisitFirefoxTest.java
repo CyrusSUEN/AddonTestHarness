@@ -1,5 +1,7 @@
 package ath.test.adnauseum;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,11 +13,13 @@ import ath.adnauseum.Websites;
 public class PageVisitFirefoxTest {
 
 	private WebDriver driver;
+	
+	private static String exportJSONAdsURL = "http://rednoise.org/ad-auto-export";
 
 	@Before
 	public void createDriver() {
 		
-		String profileName = "cfxo";
+		String profileName = "dev";
 		
 		FirefoxProfile ffp = new ProfilesIni().getProfile(profileName);
 		if (ffp == null)
@@ -24,11 +28,40 @@ public class PageVisitFirefoxTest {
 		ffp.setPreference("extensions.adnauseam2@rednoise.org.automated", true);
 		
 		driver = new FirefoxDriver(ffp);
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
 	}
 
 	@After
 	public void quitDriver() {
 		driver.quit();
+	}
+	
+	@Test
+	public void testAllURLs() throws InterruptedException {
+		
+		String [][] testURLs = {
+				// Websites.textAds, 
+				Websites.topBlogs,
+				Websites.topBusiness,
+				Websites.topCars,
+				Websites.topDomain,
+				Websites.topGadgets,
+				Websites.topMedia,
+				Websites.topNews,
+				Websites.topRecreation,
+				Websites.topSports
+		};
+		
+		for (int i = 0; i < testURLs.length; i++) {
+			
+			for (int j = 0; j < testURLs[i].length; j++)
+			{
+				driver.get(testURLs[i][j]);
+				Thread.sleep(5000);
+			}
+		}
+		// finished testing and export collected ads as JSON
+		driver.get(exportJSONAdsURL);
 	}
 
 	@Test
@@ -59,6 +92,8 @@ public class PageVisitFirefoxTest {
 	public void testGoogleSearch() {
 		driver.get("http://www.google.com");
 		// rest of the test...
+		// finished testing and export collected ads as JSON
+		driver.get(exportJSONAdsURL);
 	}
 
 	@Test
