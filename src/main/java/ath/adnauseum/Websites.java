@@ -177,7 +177,7 @@ public class Websites {
 			"http://amazon.de",
 			"http://360.cn",
 			"http://netflix.com",
-			"http://163.com",
+			// "http://163.com",
 			"http://Onclickads.net",
 			"http://adcash.com",
 			"http://go.com",
