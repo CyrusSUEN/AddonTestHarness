@@ -8,7 +8,11 @@
 	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-remote-driver/2.45.0/selenium-remote-driver-2.45.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.3.1/gson-2.3.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-api/2.45.0/selenium-api-2.45.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-api/2.45.0/selenium-api-2.45.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://seleniumhq.github.io/selenium/docs/api/java/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.3.6/httpclient-4.3.6.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.3.3/httpcore-4.3.3.jar"/>
