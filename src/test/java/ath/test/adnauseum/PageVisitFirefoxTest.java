@@ -44,7 +44,7 @@ public class PageVisitFirefoxTest {
 	public void testAllURLs() {
 		
 		String [][] testURLs = {
-				// Websites.textAds, 
+				Websites.textAds, 
 				Websites.topBlogs,
 				Websites.topBusiness,
 				Websites.topCars,
@@ -67,23 +67,6 @@ public class PageVisitFirefoxTest {
 					}
 				});
 			}
-		}
-		// finished testing and export collected ads as JSON
-		driver.get(exportJSONAdsURL);
-	}
-
-	@Test
-	public void testTopNews() {
-
-		String[] testURLs = Websites.topNews;
-		for (int i = 0; i < testURLs.length; i++) {
-			driver.get(testURLs[i]);
-
-			(new WebDriverWait(driver, 10)).until(new ExpectedCondition<List<WebElement>>() {
-				public List<WebElement> apply(WebDriver d) {
-					return d.findElements(By.tagName("body"));
-				}
-			});
 		}
 		// finished testing and export collected ads as JSON
 		driver.get(exportJSONAdsURL);
