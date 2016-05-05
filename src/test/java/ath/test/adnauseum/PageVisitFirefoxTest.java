@@ -17,19 +17,19 @@ import ath.adnauseum.Websites;
 
 public class PageVisitFirefoxTest {
 
+	public static String PROFILE_NAME = "cfxo";
+	
 	private WebDriver driver;
 	private static String exportJSONAdsURL = "http://rednoise.org/ad-auto-export";
 
 	@Before
 	public void createDriver() {
 
-		String profileName = "cfxo";
-
-		FirefoxProfile ffp = new ProfilesIni().getProfile(profileName);
+		FirefoxProfile ffp = new ProfilesIni().getProfile(PROFILE_NAME);
 		if (ffp == null)
-			throw new RuntimeException("Unable to load profile: " + profileName);
+			throw new RuntimeException("Unable to load profile: " + PROFILE_NAME);
 
-		ffp.setPreference("extensions.adnauseam2@rednoise.org.automated", true);
+		//ffp.setPreference("extensions.adnauseam2@rednoise.org.automated", true);
 		
 		driver = new FirefoxDriver(ffp);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
