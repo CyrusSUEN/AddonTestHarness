@@ -1,5 +1,4 @@
 # AddonTestHarness
-Selenium-based testing for various browser addons
 
 ## Testing AdNauseam (v2.*) on Firefox via Eclipse
 
@@ -9,4 +8,4 @@ Selenium-based testing for various browser addons
 
 3. Select ```Save file``` from the download prompt and check ```Do this automatically for files like this from now on.``` So that Firefox will download the exported JSON file automatically upon finishing the script.
 
-4. Run ath.test.adnauseum.PageVisitFirefoxTest as a JUnit test. When it is finished, there will an be exported JSON file in your system's default Download folder
+4. Run ath.test.adnauseum.PageVisitFirefoxTest as a JUnit test. When it is finished, there will an be exported JSON file in your browser's default download folder
